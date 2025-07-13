@@ -125,11 +125,11 @@ func (c *Cache[T]) Get(key string) (T, bool) {
 func (c *Cache[T]) GetAll() map[string]T {
 	c.mu.RLock()
 	defer c.mu.RUnlock()
-	copy := make(map[string]T, len(c.data))
+	result := make(map[string]T, len(c.data))
 	for k, v := range c.data {
-		copy[k] = v
+		result[k] = v
 	}
-	return copy
+	return result
 }
 
 // Find returns all items satisfying the provided predicate.
